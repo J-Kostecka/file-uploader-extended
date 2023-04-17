@@ -1,6 +1,7 @@
 <?php
+declare(strict_types=1);
 
-interface parserInterface
+interface ParserInterface
 {
-    function parse($file);
+    public function parse(string $file): array;
 }

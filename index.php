@@ -1,14 +1,15 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . "/db/models/zaznamy.php";
-require_once $_SERVER['DOCUMENT_ROOT'] . "/parser/parserMaster.php";
+declare(strict_types=1);
+require_once $_SERVER['DOCUMENT_ROOT'] . "/db/models/Zaznamy.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/parser/ParserMaster.php";
 
 session_start();
 
 $message = isset($_SESSION['message']) ? $_SESSION['message'] : "";
 $error = isset($_SESSION['error']) ? $_SESSION['error'] : "";
 
-$zaznamy = new zaznamy();
-$parser = new parserMaster();
+$zaznamy = new Zaznamy();
+$parser = new ParserMaster();
 
 session_destroy();
 ?>
@@ -30,7 +31,7 @@ session_destroy();
                     <div id="errorbox"><?= $error ?></div>
                 <?php endif; ?>
 
-                <form method="POST" enctype="multipart/form-data" action="uploader/fileUpload.php">
+                <form method="POST" enctype="multipart/form-data" action="uploader/FileUpload.php">
                     <h3>Nahrát soubor</h3>
                     <label for="uploadedFile">Vybrat soubor</label>
                     <input id="uploadedFile" name="uploadedFile" type="file" accept="<?= htmlspecialchars(implode(",", $parser->supportedFormats)) ?>">

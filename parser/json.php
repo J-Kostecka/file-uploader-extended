@@ -1,10 +1,10 @@
 <?php
-require_once "parserInterface.php";
+declare(strict_types=1);
+require_once "ParserInterface.php";
 
-class json implements parserInterface
+class Json implements ParserInterface
 {
-
-    public function parse($file) {
+    public function parse(string $file): array {
         return json_decode($file, true);
     }
 }

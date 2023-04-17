@@ -1,23 +1,22 @@
 <?php
-require_once "json.php";
+declare(strict_types=1);
+require_once "Json.php";
 
-class parserMaster
+class ParserMaster
 {
-
     public $supportedFormats = [
         "json" => "application/json"
     ];
 
     private $parsers = [];
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->parsers = [
-            "json" => new json()
+            "json" => new Json()
         ];
     }
 
-    public function analyzeAndParse($file, string $fileFormat): array {
+    public function parseByFormat(string $file, string $fileFormat): array {
         foreach ($this->supportedFormats as $formatName => $format) {
             if ($fileFormat === $format) {
                 return $this->parsers[$formatName]->parse($file);
